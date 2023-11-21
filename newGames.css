@@ -40,7 +40,7 @@
     width: 100%;
 }
 
-.inputNamr::placeholder {
+.inputName::placeholder {
     color: #aaa;
 }
 
