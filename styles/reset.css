@@ -19,13 +19,15 @@ body, button, input, select, textarea {
 }
 
 body {
-    background: url(../images/wallpaper-animes.jpg);
+    background: url(../images/wallpaper-animes-1.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 .container {
+    /* display: flex;
+    align-items: center; */
     height: 100vh;
     background: #000b;
     padding: 0 3.2rem;
