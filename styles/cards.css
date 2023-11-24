@@ -32,7 +32,7 @@ aside, aside button {
     grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
     margin-top: 2rem;
-    perspective: 29rem;
+    perspective: 100rem;
 }
 
 .card {
@@ -47,7 +47,7 @@ aside, aside button {
 
 .card:hover {
     cursor: pointer;
-    
+    transform: rotateY(180deg);
 }
 
 .flipCard {
