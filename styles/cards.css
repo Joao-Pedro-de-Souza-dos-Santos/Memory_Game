@@ -40,14 +40,13 @@ aside, aside button {
     position: relative;
     aspect-ratio: 3/4.3;
     border-radius: 0.3rem;
-    transition: transform 200ms, filter 200ms;
+    transition: transform 500ms, filter 200ms;
     transform-style: preserve-3d;
     /* box-shadow: 5px 10px black; */
 }
 
 .card:hover {
     cursor: pointer;
-    transform: rotateY(180deg);
 }
 
 .flipCard {
@@ -78,7 +77,7 @@ aside, aside button {
     transform: rotateY(0deg);
 }
 
-.disabledCard img {
+.disabledCard  img {
     filter: saturate(0.1);
 }
 
