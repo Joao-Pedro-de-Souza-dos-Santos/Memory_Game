@@ -1,8 +1,14 @@
 function backPage() {
-    const playerConfirm = confirm("Deseja realmente sair? Voçê perderá seu progresso");
-    if (playerConfirm) {
+    if (gameIsFinish) {
+        window.history.back();
+    } else {
+        const playerConfirm = confirm("Deseja realmente sair? Voçê perderá seu progresso");
+        if (playerConfirm) {
         window.history.back();// 👈👌 Código TopZeira autofocus //
+        }
     }
+
+    
 }
 
 function createCards() {
@@ -71,6 +77,7 @@ function checkGamesWin() {
     if (disabledCards.length === 14) {
         clearInterval(endTimerInterval);
 
+        gameIsFinish = true;
         const userData = {
             player: storagePlayerNick,
             time: timer.textContent,
@@ -87,7 +94,7 @@ function checkGamesWin() {
 
         alert(
             `You Win ${storagePlayerNick}.
-Time ${timer.innerHTML} !`);    
+Time ${timer.innerHTML} !`);
     }
     console.log(disabledCards);
 }
@@ -123,6 +130,7 @@ backButton.addEventListener("click", backPage);
 
 createCards();
 
+let gameIsFinish = false;
 let firstCard = "";
 let secondCard = "";
 clickFlipCard();
