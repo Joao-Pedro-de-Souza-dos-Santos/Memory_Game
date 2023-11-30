@@ -56,6 +56,42 @@ function clickFlipCard() {
 
 }
 
+function setStartTimer() {
+    endTimerInterval = setInterval(() => {
+        const dateNow = new Date();
+        const dateDiff = new Date(dateNow - initialDateTimer);
+        const minuts = String(dateDiff.getMinutes()).padStart("2","0");
+        const second = String(dateDiff.getSeconds()).padStart("2","0");
+        timer.innerHTML = (`${minuts} : ${second}`);
+    }, 1000); 
+}
+
+function checkGamesWin() {
+    const disabledCards = document.querySelectorAll(".disabledCard");
+    if (disabledCards.length === 14) {
+        clearInterval(endTimerInterval);
+
+        const userData = {
+            player: storagePlayerNick,
+            time: timer.textContent,
+        }
+
+        const storageRank = JSON.parse(localStorage.getItem("@memoryGame:rank"));
+
+        if (storageRank) {
+            const rankData = [...storageRank, userData];
+            localStorage.setItem("@memoryGame:rank", JSON.stringify(rankData));
+        } else {
+            localStorage.setItem("@memoryGame:rank", JSON.stringify([userData]));
+        }
+
+        alert(
+            `You Win ${storagePlayerNick}.
+Time ${timer.innerHTML} !`);    
+    }
+    console.log(disabledCards);
+}
+
 function checkMatchCards() {
     if (firstCard.getAttribute("name") === secondCard.getAttribute("name")) {
         new Audio("../audios/sci-fi.wav").play();
@@ -63,6 +99,7 @@ function checkMatchCards() {
             firstCard.classList.add("disabledCard");
             secondCard.classList.add("disabledCard");
             firstCard = ""; secondCard = "";
+            checkGamesWin();
         }, 500)
         
     } else {
@@ -78,6 +115,7 @@ function checkMatchCards() {
 const playerNick = document.querySelector(".playerNick");
 const backButton = document.querySelector(".backButton");
 const gridCards = document.querySelector(".gridCards");
+const timer = document.querySelector(".playerTime")
 
 const storagePlayerNick = localStorage.getItem("@memoryGame:playerName");
 playerNick.innerHTML = storagePlayerNick;
@@ -88,3 +126,7 @@ createCards();
 let firstCard = "";
 let secondCard = "";
 clickFlipCard();
+
+const initialDateTimer = new Date();
+let endTimerInterval;
+setStartTimer();
